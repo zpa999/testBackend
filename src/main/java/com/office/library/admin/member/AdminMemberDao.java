@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
-
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public class AdminMemberDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	
 	public boolean isAdminMember(String a_m_id) {
@@ -49,7 +52,7 @@ public class AdminMemberDao {
 		values.add(adminMemberVo.getA_m_id());
 
 		columns.add("a_m_pw");
-		values.add(adminMemberVo.getA_m_pw());
+		values.add(passwordEncoder.encode(adminMemberVo.getA_m_pw()));
 
 		columns.add("a_m_name");
 		values.add(adminMemberVo.getA_m_name());
@@ -103,5 +106,48 @@ String sql = String.format("INSERT INTO tbl_admin_member (%s) VALUES (%s, NOW(),
 			throw new RuntimeException("회원가입 처리 중 시스템 오류가 발생했습니다. 재시도하거나 관리자에게 문의해주세요.", e);
 		}
 	}
+
+	
+	public AdminMemberVo selectAdmin(AdminMemberVo adminMemberVo) {
+		System.out.println("[AdminMemberDao] selectAdmin()");
+		
+		String sql = "SELECT * FROM tbl_admin_member WHERE a_m_id = ? AND a_m_approval > 0";
+		
+		List<AdminMemberVo> adminMemberVos = new ArrayList<AdminMemberVo>();
+
+		try {
+			adminMemberVos = jdbcTemplate.query(sql, new RowMapper<AdminMemberVo>() {
+				@Override
+				public AdminMemberVo mapRow(java.sql.ResultSet rs, int rowNum) throws java.sql.SQLException {
+					AdminMemberVo adminMemberVo = new AdminMemberVo();
+					adminMemberVo.setA_m_no(rs.getInt("a_m_no"));
+					adminMemberVo.setA_m_approval(rs.getInt("a_m_approval"));
+					adminMemberVo.setA_m_id(rs.getString("a_m_id"));
+					adminMemberVo.setA_m_pw(rs.getString("a_m_pw"));
+					adminMemberVo.setA_m_name(rs.getString("a_m_name"));
+					adminMemberVo.setA_m_gender(rs.getString("a_m_gender"));
+					adminMemberVo.setA_m_part(rs.getString("a_m_part"));
+					adminMemberVo.setA_m_position(rs.getString("a_m_position"));
+					adminMemberVo.setA_m_mail(rs.getString("a_m_mail"));
+					adminMemberVo.setA_m_phone(rs.getString("a_m_phone"));
+					adminMemberVo.setA_m_reg_date(rs.getString("a_m_reg_date"));
+					adminMemberVo.setA_m_mod_date(rs.getString("a_m_mod_date"));
+					return adminMemberVo;
+				}
+			}, adminMemberVo.getA_m_id());
+
+			// 로그인 시 ID는 유일해야 하므로, 결과 리스트에서 첫 번째 요소를 반환합니다.
+			if (!passwordEncoder.matches(adminMemberVo.getA_m_pw(),
+					adminMemberVos.get(0).getA_m_pw())) {
+						adminMemberVos.clear();
+						
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+			// 예외 발생 시 빈 리스트를 반환하여 로그인 실패로 처리합니다.
+		}
+		return adminMemberVos.size() > 0 ? adminMemberVos.get(0) : null;
+	}
+
 	
 }
