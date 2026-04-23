@@ -136,7 +136,7 @@ String sql = String.format("INSERT INTO tbl_admin_member (%s) VALUES (%s, NOW(),
 				}
 			}, adminMemberVo.getA_m_id());
 
-			// 로그인 시 ID는 유일해야 하므로, 결과 리스트에서 첫 번째 요소를 반환합니다.
+			// 암호화된 문자열을 비교하는 메서드
 			if (!passwordEncoder.matches(adminMemberVo.getA_m_pw(),
 					adminMemberVos.get(0).getA_m_pw())) {
 						adminMemberVos.clear();

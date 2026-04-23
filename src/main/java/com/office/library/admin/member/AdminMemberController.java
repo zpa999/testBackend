@@ -103,7 +103,7 @@ public class AdminMemberController {
 		
 		String nextPage = "redirect:/admin";
 		
-//		session.removeAttribute("loginedAdminMemberVo");
+		//session.removeAttribute("loginedAdminMemberVo");
 		session.invalidate();
 		
 		return nextPage;

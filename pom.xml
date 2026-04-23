@@ -141,9 +141,6 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-
-		
-		
 	</dependencies>
     <build>
         <finalName>library</finalName>
