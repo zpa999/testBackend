@@ -1,8 +1,10 @@
+com\office\library\admin\member\AdminMemberDao$3.class
 com\office\library\admin\member\AdminMemberDao.class
 com\office\library\admin\AdminHomeController.class
 com\office\library\HomeController.class
 com\office\library\admin\member\AccountRegistrationException.class
 com\office\library\admin\member\AdminMemberVo.class
+com\office\library\admin\member\AdminMemberDao$2.class
 com\office\library\admin\member\DuplicateUserException.class
 com\office\library\admin\member\AdminMemberDao$1.class
 com\office\library\admin\member\AdminMemberController.class
