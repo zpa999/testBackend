@@ -97,7 +97,7 @@
 					<c:param name='b_no' value='${bookVo.b_no}'/>
 				</c:url>
 				<%-- <a class="delete_book_button" href="${delete_url}">도서 삭제</a> --%>
-				<a class="delete_book_button" href="#none" onclick="deleteBook(${bookVo.b_no},'${bookVo.b_name}')">도서 삭제</a>
+				<a class="delete_book_button" href="#none" onclick="deleteBook('${bookVo.b_no}','${bookVo.b_name}')">도서 삭제</a>
 				
 			</div>
 		

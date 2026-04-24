@@ -32,7 +32,8 @@
 		
 			<div class="modify_book_form">
 			
-				<form action="<c:url value='/book/admin/modifyBookConfirm' />" name="modify_book_form" method="post" enctype="multipart/form-data">
+				<form action="<c:url value='/book/admin/modifyBookConfirm' />" 
+				name="modify_book_form" method="post" enctype="multipart/form-data">
 					
 					<input type="hidden" name="b_no" value="${bookVo.b_no}">
 					

@@ -1,5 +1,6 @@
 com\office\library\admin\member\AdminMemberDao.class
 com\office\library\admin\AdminHomeController.class
+com\office\library\book\admin\BookDao$2.class
 com\office\library\admin\member\AdminMemberDao$2.class
 com\office\library\admin\member\DuplicateUserException.class
 com\office\library\book\admin\BookService.class
@@ -13,4 +14,5 @@ com\office\library\book\admin\util\UploadFileService.class
 com\office\library\admin\member\AccountRegistrationException.class
 com\office\library\admin\member\AdminMemberVo.class
 com\office\library\admin\member\AdminMemberDao$1.class
+com\office\library\book\admin\BookDao$1.class
 com\office\library\book\BookVo.class
