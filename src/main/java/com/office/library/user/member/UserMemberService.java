@@ -43,4 +43,20 @@ public class UserMemberService {
         }
     }
 
+    public UserMemberVo loginConfirm(UserMemberVo userMemberVo) {
+        System.out.println("[UserMemberService] loginConfirm()");
+
+        UserMemberVo loginedUserMemberVo = userMemberDao.selectUser(userMemberVo);
+
+        if(loginedUserMemberVo != null){
+            System.out.println("[UserMemberService] USER MEMBER LOGIN SUCCESS");
+        }else{
+            System.out.println("[UserMemberService] USER MEMBER LOGIN FAIL");
+        }
+
+        return loginedUserMemberVo;
+        }
+
+        
+
 }

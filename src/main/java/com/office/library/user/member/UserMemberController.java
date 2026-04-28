@@ -47,4 +47,34 @@ public class UserMemberController {
         return nextPage;
     }
 
+    @GetMapping("/loginForm")
+    public String loginForm() {
+        System.out.println("[UserMemberController] loginForm()");
+
+        String nextPage = "user/member/login_form";
+
+        return nextPage;
+    }
+
+    @PostMapping("loginConfirm")
+    public String loginConfirm(UserMemberVo userMemberVo, HttpSession session) {
+        System.out.println("[UserMemberController] loginConfirm()");
+
+        String nextPage = "user/member/login_ok";
+
+        UserMemberVo loginedUserMemberVo =
+                userMemberService.loginConfirm(userMemberVo);
+
+        if (loginedUserMemberVo == null) {
+            nextPage = "user/member/login_ng";
+
+        } else {
+            session.setAttribute("loginedUserMemberVo", loginedUserMemberVo);
+            session.setMaxInactiveInterval(60 * 30);
+        }
+
+
+        return nextPage;
+    }
+
 }
