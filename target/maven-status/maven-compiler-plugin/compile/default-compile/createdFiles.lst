@@ -13,6 +13,7 @@ com\office\library\book\admin\BookDao$1.class
 com\office\library\book\BookVo.class
 com\office\library\user\member\UserMemberVo.class
 com\office\library\admin\AdminHomeController.class
+com\office\library\user\member\UserMemberDao$2.class
 com\office\library\admin\member\AdminMemberDao$2.class
 com\office\library\admin\member\DuplicateUserException.class
 com\office\library\user\member\UserMemberController.class

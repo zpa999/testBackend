@@ -57,6 +57,19 @@ public class UserMemberService {
         return loginedUserMemberVo;
         }
 
+
+        public int modifyAccountConfirm(UserMemberVo userMemberVo) {
+            System.out.println("[UserMemberService] modifyAccountConfirm()");
+
+            return userMemberDao.updateUserAccount(userMemberVo);
+        }
+
+        public UserMemberVo getLoginedUserMemberVo(int u_m_no) {
+            System.out.println("[UserMemberService] getLoginedUserMemberVo()");
+
+            return userMemberDao.selectUser(u_m_no);
+        }
+
         
 
 }
